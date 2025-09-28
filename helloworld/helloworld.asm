@@ -1,7 +1,5 @@
 section .data 
-message: db 'hello, world!', 10
-
-section .text
+message: db 'hello, world!', 10section .text
 global _start
 
 _start:
