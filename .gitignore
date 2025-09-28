@@ -1,0 +1,42 @@
+# Objetos compilados
+*.o
+*.obj
+
+# Executáveis gerados
+*.exe
+*.out
+*.elf
+*.bin
+
+# Mapas e símbolos
+*.map
+*.sym
+
+# Arquivos de depuração
+*.pdb
+*.dSYM/
+*.dbg
+
+# Intermediários
+*.lst
+*.sbr
+*.tmp
+
+# Se usar Visual Studio (MASM)
+*.idb
+*.ilk
+*.log
+*.tlog
+*.user
+*.suo
+*.ncb
+*.aps
+*.vcxproj.*
+*.vs/
+
+# Se usar NASM + GCC
+*.d
+
+# Outros
+*.swp
+*~
