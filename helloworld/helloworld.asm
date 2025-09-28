@@ -11,3 +11,6 @@ _start:
   mov   rdx, 14         ;string length in bytes
   syscall
   
+  mov   rax, 60
+  xor   rdi, rdi
+  syscall
