@@ -2,6 +2,7 @@ global _start
 
 extern strlen	;função para tamanho de string
 extern input	;função que implementa sys_read
+extern print_string ;função de imprimir uma string na tela
 
 section .data
 	init_text: db 'Bem-vindo! Digite o número das opções abaixo:', 10, '1 - strlen do input', 10, '2 - print do strlen', 10, '3 - print uint(4 bytes/)', 10
@@ -38,13 +39,19 @@ _start:
 
 	;agora nós temos o retorno da função em rax
 	cmp byte [rax], '1'
-	je .call_input
+	je .call_strlen_input
 
 	cmp byte [rax], '2'
 	je .call_exit
 
-.call_input:
-	call input
+.call_strlen_input:
+	;quando essa função é chamada, ele retorna o endereço
+  ;de memório da string digitada e guarda em rax
+  call input
+  
+  mov rsi, rax
+  call print_string
+
 .call_exit:
 	
 	;término do programa
