@@ -26,7 +26,7 @@ _start:
 	lea rdi, [init_text]
 	call strlen
 	
-	;imprimi o texto do menu na tela
+	;imprime o texto do menu na tela
 	mov rcx, rax
 	mov rax, 1
 	mov rdi, 1
@@ -38,6 +38,7 @@ _start:
 	call input
 
 	;agora nós temos o retorno da função em rax
+  ;contendo o endereço de memória da string com 1 byte
 	cmp byte [rax], '1'
 	je .call_strlen_input
 
