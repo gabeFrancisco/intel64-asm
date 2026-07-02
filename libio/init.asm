@@ -46,10 +46,23 @@ _start:
 
 .call_strlen_input:
 	;quando essa função é chamada, ele retorna o endereço
-  ;de memório da string digitada e guarda em rax
+  ;de memória da string digitada e guarda em rax
   call input
   
+  push rax
+  mov rdi, rax
+
+  ;agora que temos o endereço da string em rax
+  ;vamos direciona-la para a função strlen
+  call strlen
+  
+  ;agora rcx contem o valor de retorno de strlen
+  mov rdx, rax 
+  pop rax
+  
   mov rsi, rax
+
+  ;função que imprime uma string na tela
   call print_string
 
 .call_exit:

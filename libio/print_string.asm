@@ -10,7 +10,8 @@ print_string:
   
   ;rsi não será mexido pois ele já recebido via parametro
   ;ou seja, rsi = [endereço da string]
-  mov rdx, 4
+  
+  ;rdx também tem seu valor setado via parametro
 
   syscall
   ret
