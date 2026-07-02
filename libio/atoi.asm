@@ -7,7 +7,7 @@ section .bss
 section .text
 
 atoi:
-  ;rsi é o endereço de memória contendo a string
+  ;rdi é o endereço de memória contendo a string
   ;rax será o retorno em inteiro
 
   xor rax, rax
@@ -15,7 +15,7 @@ atoi:
 .loop:
   
   ;movzx significa 'move with zero extension'
-  ;move um valor e deixa o restante com 0.
+  ;move um valor com tamanho predeterminado e deixa o restante com 0.
   ;move um byte de rsi para rcx
   ;
   ;exemplo:
@@ -23,7 +23,7 @@ atoi:
   ;rsi = '1', '2', '3'
   ;movzx rcx, byte [rsi] => rcx = '1'
 
-  movzx rcx, byte [rsi]
+  movzx rcx, byte [rdi]
   
   ;subtraimos de rcx a char '0' pois se o valor inicial era '5' = 53
   ;pois '0' = 48 e 53 - 48 = 5!
@@ -33,8 +33,14 @@ atoi:
 
   imul rax, 10
   add rax, rcx
-
   
+  inc rdi
 
+  cmp byte [rdi], 10
+  je .end
 
-  
+  cmp byte [rdi], 0
+  je .end
+
+.end:
+  ret

@@ -1,8 +1,9 @@
 global _start
 
-extern strlen	;função para tamanho de string
-extern input	;função que implementa sys_read
+extern strlen	      ;função para tamanho de string
+extern input	      ;função que implementa sys_read
 extern print_string ;função de imprimir uma string na tela
+extern atoi         ;função de ASCII para inteiro
 
 section .data
 	init_text: db 'Bem-vindo! Digite o número das opções abaixo:', 10, '1 - strlen do input', 10, '2 - print do strlen', 10, '3 - print uint(4 bytes/)', 10
@@ -45,6 +46,11 @@ _start:
 	cmp byte [rax], '2'
 	je .call_exit
 
+  cmp byte [rax], '3'
+  je .call_atoi
+
+  jmp .call_exit
+
 .call_strlen_input:
 	;quando essa função é chamada, ele retorna o endereço
   ;de memória da string digitada e guarda em rax
@@ -73,4 +79,33 @@ _start:
 	xor rdi, rdi
 	syscall
 
+.call_atoi:
+  call input
 
+  ;rax terá o endereço da string retornada de strlen
+
+  ;agora chamaremos a função atoi com argumento em rdi
+  mov rdi, rax
+  
+  call atoi
+  
+  mov rdi, rax
+  mov rax, 1
+  mov rsi, 1
+  mov rdx, 1
+  syscall
+
+  jmp .call_exit 
+  
+
+
+
+
+
+
+
+
+
+
+
+  
