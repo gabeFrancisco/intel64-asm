@@ -1,7 +1,7 @@
 global _start
 
 section .data
-  string: db 'Isto eh uma frase', 0
+  string: db 'God bless your lifeeee!', 0
 
 section .text
 
@@ -24,12 +24,25 @@ loop:
   ;se for 'a', ele incrementa rcx e volta para o loop
   cmp bl, 'a'
   je increment
+
+  cmp bl, 'e'
+  je increment
+
+  cmp bl, 'i'
+  je increment
+
+  cmp bl, 'o'
+  je increment
+
+  cmp bl, 'u'
+  je increment
+
   jmp loop
 
 .end:
   
   mov rax, 60
-  xor rdi, rdi
+  xor rdi, rcx
   syscall
   
 _start:
